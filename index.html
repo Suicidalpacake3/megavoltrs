@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MegaVolt RS - Repair Management</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="brand">⚡ MegaVolt RS</div>
+  <button class="nav-btn" data-view="dashboard">Dashboard</button>
+  <button class="nav-btn" data-view="clients">Clients</button>
+  <button class="nav-btn" data-view="jobs">Jobs</button>
+  <button class="nav-btn" data-view="history">History</button>
+  <button class="btn-primary" id="newJobBtn">+ New Job</button>
+  <button class="btn-ghost" id="backupBtn" title="Download backup">💾</button>
+  <input type="file" id="restoreInput" accept=".json" hidden>
+  <button class="btn-ghost" id="restoreBtn" title="Restore backup">📂</button>
+</nav>
+
+<main id="app"></main>
+
+<!-- Modal -->
+<div id="modal" class="modal-bg hidden">
+  <div class="modal"><div id="modalContent"></div></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
