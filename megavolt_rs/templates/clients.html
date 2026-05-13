@@ -1,0 +1,16 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Clients</h1>
+<form method="get" class="search"><input name="q" value="{{q}}" placeholder="Search name or phone..."><button>Search</button></form>
+<details><summary class="btn-primary">+ Add New Client</summary>
+<form method="post" action="{{url_for('add_client')}}" class="grid">
+<input name="name" placeholder="Full Name *" required>
+<input name="phone" placeholder="Phone">
+<input name="email" placeholder="Email">
+<input name="address" placeholder="Address">
+<textarea name="notes" placeholder="Notes"></textarea>
+<button class="btn-primary">Save Client</button>
+</form></details>
+<table>
+<tr><th>Name</th><th>Phone</th><th>Email</th><th></th></tr>
+{% for c in clients %}
+<tr><td><a href="{{url_for('client_det

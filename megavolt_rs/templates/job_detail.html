@@ -1,0 +1,28 @@
+{% extends 'base.html' %}{% block content %}
+<a href="{{url_for('jobs')}}">← Back to Jobs</a>
+<h1>Job {{job.job_number}} <span class="status {{job.status}}">{{job.status}}</span></h1>
+<div class="card-box">
+  <p><strong>Client:</strong> {{job.name}} ({{job.phone}})</p>
+  <p><strong>Device:</strong> {{job.device_type}} - {{job.brand}} {{job.model}}</p>
+  <p><strong>Serial:</strong> {{job.serial or '-'}}</p>
+  <p><strong>Reported Issue:</strong> {{job.issue}}</p>
+  <p><strong>Date In:</strong> {{job.date_in}} | <strong>Date Out:</strong> {{job.date_out or '-'}}</p>
+</div>
+<h2>Update Job</h2>
+<form method="post" action="{{url_for('update_job',jid=job.id)}}" class="grid">
+  <label>Diagnosis <textarea name="diagnosis">{{job.diagnosis or ''}}</textarea></label>
+  <label>Work Done / Resolution <textarea name="work_done">{{job.work_done or ''}}</textarea></label>
+  <label>Cost (R) <input type="number" step="0.01" name="cost" value="{{job.cost}}"></label>
+  <label>Status
+    <select name="status">
+      {% for s in ['Received','Awaiting Approval','Approved','Quotation','Report','In Repair','No Fault Found','Do Not Repair','Unrepairable','Ready for Collection','Completed','Collected','Recall','Dispose'] %}
+      <option value="{{s}}" {% if job.status==s %}selected{% endif %}>{{s}}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <button class="btn-primary">Save Changes</button>
+</form>
+<form method="post" action="{{url_for('del_job',jid=job.id)}}" onsubmit="return confirm('Delete job?')" style="margin-top:20px">
+  <button class="btn-danger">Delete Job</button>
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}{% block content %}
+<h1>New Job</h1>
+<form method="post" class="grid">
+  <label>Job Number <input name="job_number" value="{{next_num}}"></label>
+  <label>Client
+    <select name="client_id" required>
+      <option value="">-- Select Client --</option>
+      {% for c in clients %}<option value="{{c.id}}">{{c.name}} ({{c.phone}})</option>{% endfor %}
+    </select>
+  </label>
+  <label>Device Type
+    <select name="device_type">
+      <option>Inverter</option><option>TV</option><option>Other</option>
+    </select>
+  </label>
+  <label>Brand <input name="brand"></label>
+  <label>Model <input name="model"></label>
+  <label>Serial Number <input name="serial"></label>
+  <label>Reported Issue <textarea name="issue" required></textarea></label>
+  <button class="btn-primary">Create Job</button>
+</form>
+{% endblock %}
